@@ -28,7 +28,7 @@ useEffect(() => {
 if(saveLogin === true){
 localStorage.setItem('saveLogin',true);
 }
-localStorage.setItem("User",e);
+localStorage.setItem("User",JSON.stringify(e));
 console.log(saveLogin)
 props.history.push("/MainPage");
             }

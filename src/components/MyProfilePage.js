@@ -5,11 +5,14 @@ import CircleButton from './CircleButton'
 
 
 export default function MyProfilePage(props) {
+  const [userLogined,setUserLogined] = useState(localStorage.getItem('User'));
+  let usr = JSON.parse(userLogined)
+  console.log(JSON.parse(userLogined))
     return (<div>
         <NavBar Page="MyProfilePage" toLink="/MainPage"/>
         <div className="card">
   <div className="card-body">
-  <h1 style={{fontWeight:"bold"}}>  {localStorage.getItem('User').firstName} </h1>
+  <h1 style={{fontWeight:"bold"}}>  {usr.firstName} {usr.lastName} </h1>
   </div>
   <div className="card-footer">
 
