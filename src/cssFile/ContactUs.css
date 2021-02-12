@@ -1,0 +1,13 @@
+#policityAndTerms{
+    border: 10px solid;
+    text-align: center;
+    margin: 13px;
+}
+#tittle{
+    font-weight: bold;
+    margin: 18px;
+    font-size: 24px;
+}
+#parag{
+    font-family: ui-serif;
+}

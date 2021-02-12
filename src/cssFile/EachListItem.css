@@ -1,0 +1,20 @@
+#profileItem{ 
+    list-style: none;
+    width: 45%;
+    text-align: center;
+    height: fit-content;
+    margin-top: 19px;
+    border: 1px solid black;
+}
+#profileImg{
+    width: 63%;
+    height: 116px;
+}
+#profileTittle{
+    margin: 1px;
+    font-weight: bold;
+}
+#profilePrice{
+    font-size: 20px;
+    font-weight: bold;
+}

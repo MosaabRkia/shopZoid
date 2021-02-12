@@ -1,0 +1,15 @@
+.card{
+    margin: 10%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+#profileImg{
+    border-radius: 50%;
+    width: 60%;
+    height: 60%;
+}
+.card-footer{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
