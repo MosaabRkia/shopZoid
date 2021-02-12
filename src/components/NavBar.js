@@ -9,6 +9,7 @@ export default function NavBar(props) {
   function OpenBar() {
     setShowHide(!ShowHide);
   }
+
 switch (props.Page) {
   case "MyProfilePage":
     return (
@@ -64,7 +65,24 @@ switch (props.Page) {
         <NavBarList showOrHide={ShowHide} Page="MainPageAfterLogin"/>
         </div>
       );
-        break;
+      break;
+      
+
+         case "PaymentPage":
+        return (
+          <div id="allNavBar">
+        <div  className="navbar navbar-light">
+          <img id="Logo" alt="LOGOReg" src="https://i.ibb.co/CbBF9Hn/LOGO.png"/>
+          <img id="ListShow" 
+          className={ShowHide ? "Show" : "Hide"} 
+          onClick={OpenBar} 
+          src="https://cdn2.iconfinder.com/data/icons/e-commerce-line-10-1/1024/menu10-128.png" />
+    
+        </div>
+        <NavBarList showOrHide={ShowHide} Page="MainPageAfterLogin"/>
+        </div>
+      );
+      break;
 
   default:
     return (

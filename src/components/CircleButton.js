@@ -1,13 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../cssFile/CircleButton.css'
 export default function CircleButton(props) {
     return (
         <div>
-            <a href={props.toLink}>
+            <Link to={props.toLink}>
             <button style={{backgroundColor:`${props.backgroundColor}`,color:`${props.fontColor}`}} id="circleButton" >
                 {props.word}
             </button>
-            </a>
+            </Link>
             
         </div>
     )

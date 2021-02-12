@@ -1,11 +1,13 @@
 import React,{Component, useEffect, useState} from "react";
+import { useHistory, withRouter } from "react-router-dom";
 import EachLine from "./EachLine";
 import NavBar from "./NavBar";
 
-export default function CartPage(props) {
+ function CartPage(props) {
 
       const [cartArr,setCartArr] = useState(props.cartArray)
       let [total,setTotal] = useState(0); 
+      let history = useHistory()
 
       useEffect(()=>{
         let temp=0;
@@ -45,6 +47,19 @@ export default function CartPage(props) {
     setTotal(temp);
    }
 
+function PayAll(){
+//AddOrderPlaced
+  let newOrder = cartArr;
+  console.log(newOrder);
+  props.AddOrderPlaced(cartArr)
+  props.resetCart(cartArr);
+  setCartArr([])
+  setTotal(0)
+  history.push("/PaymentPage", { from: this })
+  //props.history.push('/');
+}
+
+
   return (
     <div>
       <NavBar Page="CartPage" toLink="/MainPage" />
@@ -56,8 +71,9 @@ export default function CartPage(props) {
         }
       <h1>  Total : {total}$</h1>
       </ul>
-      <div style={{textAlign:"center", display:total!==0?"block":"none"}}> <button className="btn btn-primary">Pay All</button></div>
+      <div onClick={PayAll} style={{textAlign:"center", display:total!==0?"block":"none"}}> <button className="btn btn-primary">Pay All</button></div>
      
     </div>
   );
 }
+export default withRouter(CartPage) 

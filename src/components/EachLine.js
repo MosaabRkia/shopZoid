@@ -9,25 +9,35 @@ props.RemoveOne(e.target.id);
 
   function noLessThan(e){
     let quantitycheck = e.target.value;
-    //console.log(quantitycheck + "aaaaa")
+
     if(quantitycheck < 1){
       setQunatityLess(1);
-      //let id = this.props.idOfIl
-     // this.props.changeQuantity(1,id)
   }
   else{
     setQunatityLess(quantitycheck)
-    //props.e.id
     props.ChangeQuantity(props.e.id,quantitycheck)
-     // this.props.changeQuantity(e.target.value,id)
  }
 
   }
+  if(props.type == "PaymentPage"){
+    return (<li key={props.e.id} style={{display:"flex",margin:"5px"}} className="list-group-item">
+    <div id="photoDiv">
+      <img id="imgOrder" src={props.e.imgsrc} />
+    </div>
+    <div id="typeDiv">
+      <p id="orderIdText">Id : {props.e.id}</p>
+      <p>quantity : {props.e.quantity}</p>
+      <p id="orderPriceText">Total Price : {props.e.price * props.e.quantity}$</p>
+    </div>
+  </li>
+);
+  }
+
 
     if(props.type == "WishList"){
       return (<li key={props.e.id} style={{display:"flex",margin:"5px"}} className="list-group-item">
       <div id="photoDiv">
-        <img id="imgOrder" src={props.e.srcimg} />
+        <img id="imgOrder" src={props.e.imgsrc} />
       </div>
       <div id="typeDiv">
         <p id="orderIdText">Id : {props.e.id}</p>

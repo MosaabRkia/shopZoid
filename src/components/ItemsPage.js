@@ -7,10 +7,14 @@ export default function ItemsPage(props) {
 
 
   useEffect(() => {
+    console.log('hehe'  + props.typeOfCatalog)
     let temp = props.allItems.filter((item) => {
       return item.type === props.typeOfCatalog;
     });
+    console.log("im temp")
+    console.log(temp)
     setCatalogList(temp);
+    console.log("added here")
   }, []);
 
   function setItemToMain(e,path) {
@@ -24,10 +28,14 @@ export default function ItemsPage(props) {
     let NewList = props.allItems.filter((e) => {
       return e.id !== eId;
     });
-    console.log(NewList)
-    console.log(ToAddInCart)
-    setCatalogList(NewList);
+  
+    let temp = NewList.filter((item) => {
+      return item.type === props.typeOfCatalog;
+    });
+    setCatalogList(temp);
+  
     props.AddToCart(ToAddInCart,NewList);
+    
     
   }
 

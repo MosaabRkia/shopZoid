@@ -10,7 +10,8 @@ class RegisterPage extends Component {
         email:null,
         password:null,
         conPassword:null,
-        message:""
+        message:"",
+        idUser:0
     };
   }
 
@@ -46,12 +47,16 @@ if(this.props.Users !== undefined )
 if(found ===true) return;
 }
 
-let User = {firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password,conPassword:this.state.conPassword}
-this.props.registerNewUser(User);
 this.setState({message:`Successfully Registered ${this.state.firstName}`})
+console.log(this.state.idUser);
+let User = {/*User:this.state.idUser,*/firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password,conPassword:this.state.conPassword}
+this.props.registerNewUser(User);
+//let nextId = this.state.idUser+1;
+//this.setState({idUser:nextId})
+//console.log("let" + nextId);
+
 setTimeout(()=>{
     this.setState({message:null})
-    console.log(this.props.history);
     this.props.history.push('/');
 }, 3000)
 
@@ -59,6 +64,7 @@ setTimeout(()=>{
 }
 
   render() {
+    console.log(this.state.idUser)
     return (
       <form onSubmit={this.onClickRegister} className="container RegisterPage">
         <div id="titlesRegisterP">

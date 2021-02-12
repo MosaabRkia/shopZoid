@@ -15,6 +15,8 @@ import ContactUs from "./components/ContactUs";
 import ItemShopArr from './components/Arrays/ItemShopArr'
 import AllArrayOfShopsCatalog from './components/Arrays/ItemsPagesArr'
 import '../src/cssFile/body.css'
+import PaymentPage from "./components/PaymentPage";
+import SucessfullyPageOrdered from "./components/SucessfullyPageOrdered";
 
 export default function App() {
   const [itemInUse, setItemInUse] = useState(null);
@@ -22,6 +24,18 @@ export default function App() {
   const [allItems , setAllItems] = useState(ItemShopArr);
   const [cartArray,setCartArray] = useState([]);
   const [pathBack , setPathBack] = useState([]);
+  const [ArrOrders , setArrOrders] = useState([]);
+  const [LastOrder , setLastOrder] = useState();
+  const [counterForOrder , setCounterForOrder] = useState();
+
+function AddOrderPlaced(e){
+  setLastOrder(e);
+  let newUniq = 'A' + Math.random().toString(36).substr(2, 9);
+  let temp = ArrOrders;
+  temp.push(e);
+  setArrOrders(temp);
+  console.log(ArrOrders)
+}
 
   function registerNewUser(e) {
     let temp = Users;
@@ -76,9 +90,26 @@ setCartArray(temp);
     setPathBack(path);
   }
 
+  function resetCart(e){
+    let temp =[];
+    e.forEach(e=>{
+       temp = ItemShopArr;
+      temp.push(e)
+    })
+    setAllItems(temp);
+    setCartArray([]);
+  }
+
   return (
     <div>
       <Switch>
+      <Route exact path="/SucessfullyPageOrdered">
+          <SucessfullyPageOrdered />
+        </Route>
+      
+      <Route exact path="/PaymentPage">
+          <PaymentPage   LastOrder={LastOrder}/>
+        </Route>
       
         <Route exact path="/">
           <LoginPage Users={Users} />
@@ -119,9 +150,11 @@ setCartArray(temp);
             animationOutDuration={2500}
             isVisible={true}
           >
-            <MainPageAfterLogin 
+            <MainPageAfterLogin />
 
-            />
+
+      
+
           </Animated>
         </Route>
 
@@ -133,7 +166,7 @@ setCartArray(temp);
         </Route>
 
         <Route exact path="/MyOrders">
-          <MyOrders />
+          <MyOrders  ArrMyOrder={ArrOrders}/>
         </Route>
 
         <Route exact path="/WishList">
@@ -145,7 +178,7 @@ setCartArray(temp);
         </Route>
 
         <Route exact path="/CartPage">
-          <CartPage ChangeQuantity={ChangeQuantity} removeFromCart={removeFromCart} cartArray={cartArray}/>
+          <CartPage resetCart={resetCart} AddOrderPlaced={AddOrderPlaced} ChangeQuantity={ChangeQuantity} removeFromCart={removeFromCart} cartArray={cartArray}/>
         </Route>         
 
         <Route exact path="/ItemPage">
