@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 import "../cssFile/ContactUs.css";
-export default class ContactUs extends Component {
+import { withRouter } from "react-router-dom";
+
+class ContactUs extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +18,11 @@ export default class ContactUs extends Component {
       this.setState({ FlaseOrTrue: false });
     }
   };
+  GoToPageSucessfully=()=>{
+    const { history } = this.props;
+    history.push("/PageSucessfullySentContact")
+
+  }
 
   render() {
     return (
@@ -65,8 +72,9 @@ export default class ContactUs extends Component {
             <textarea class="form-control" rows="5" id="comment"></textarea>
           </div>
         </div>
-        <button className="btn btn-danger">Submit</button>
+        <button className="btn btn-danger" onClick={this.GoToPageSucessfully}>Submit</button>
       </div>
     );
   }
 }
+export default withRouter(ContactUs)

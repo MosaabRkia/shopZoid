@@ -17,6 +17,7 @@ import AllArrayOfShopsCatalog from './components/Arrays/ItemsPagesArr'
 import '../src/cssFile/body.css'
 import PaymentPage from "./components/PaymentPage";
 import SucessfullyPageOrdered from "./components/SucessfullyPageOrdered";
+import PageSucessfullySentContact from "./components/PageSucessfullySentContact";
 
 export default function App() {
   const [itemInUse, setItemInUse] = useState(null);
@@ -27,13 +28,38 @@ export default function App() {
   const [ArrOrders , setArrOrders] = useState([]);
   const [LastOrder , setLastOrder] = useState();
   const [counterForOrder , setCounterForOrder] = useState();
+  const [wishListArray , setWishListArray] = useState([]);
+
+  function RemoveFromWishList(e){
+    let newList = wishListArray.filter((item)=>{ return item.id !== e})
+    setWishListArray(newList);
+  }
+
+function AddToCartWishList(e){
+  //remove from big array
+  let theNewList = allItems.filter((item)=>{ return item.id !== e})
+  setAllItems(theNewList)
+
+  // add to cart
+let TheItem = wishListArray.filter((item)=>{ return item.id === e})
+
+let temp = cartArray;
+temp.push(TheItem[0])
+setCartArray(temp)
+console.log(cartArray)
+
+// remove from wishlist
+  let theNewListWish = wishListArray.filter((item)=>{ return item.id !== e})
+setWishListArray(theNewListWish)
+
+}
 
 function AddOrderPlaced(e){
   setLastOrder(e);
-  let newUniq = 'A' + Math.random().toString(36).substr(2, 9);
   let temp = ArrOrders;
-  temp.push(e);
+  temp.push({Order:e});
   setArrOrders(temp);
+  setCounterForOrder(counterForOrder+1);
   console.log(ArrOrders)
 }
 
@@ -42,6 +68,12 @@ function AddOrderPlaced(e){
     Users.push(e);
     setUsers(temp);
     console.log(temp)
+  }
+  function AddToWishList(e){
+      let theItem = allItems.filter((item)=>{ return item.id === e})
+      let temp = wishListArray;
+      temp.push(theItem[0])
+      setWishListArray(temp)
   }
 
   function AddToCart(AddToCart,NewList){
@@ -166,11 +198,11 @@ setCartArray(temp);
         </Route>
 
         <Route exact path="/MyOrders">
-          <MyOrders  ArrMyOrder={ArrOrders}/>
+          <MyOrders  ArrOrders={ArrOrders}/>
         </Route>
 
         <Route exact path="/WishList">
-          <WishList />
+          <WishList RemoveFromWishList={RemoveFromWishList} AddToCartWishList={AddToCartWishList} wishListArray={wishListArray}/>
         </Route>
 
         <Route exact path="/EditProfile">
@@ -182,11 +214,15 @@ setCartArray(temp);
         </Route>         
 
         <Route exact path="/ItemPage">
-          <ItemPage itemInUse={itemInUse} pathBack={pathBack}  AddToCart={AddToCart}/>
+          <ItemPage wishListArray={wishListArray} AddToWishList={AddToWishList} itemInUse={itemInUse} pathBack={pathBack}  AddToCart={AddToCart}/>
         </Route>
 
-        <Route exact path="/ContactUs">
-          <ContactUs />
+        <Route exact path="/ContactUs" >
+          <ContactUs  />
+        </Route>
+
+        <Route exact path="/PageSucessfullySentContact">
+          <PageSucessfullySentContact />
         </Route>
       </Switch>
     </div>

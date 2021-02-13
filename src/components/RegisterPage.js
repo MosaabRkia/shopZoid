@@ -24,9 +24,9 @@ class RegisterPage extends Component {
   };
 
 onClickRegister=(e)=>{
-   // let history = useHistory();
-   let found = false;
     e.preventDefault();
+
+    let found = false;
 
 if(this.state.password !== this.state.conPassword)
 {
@@ -44,7 +44,10 @@ if(this.props.Users !== undefined )
         return;
     }
 })  
-if(found ===true) return;
+if(found ===true) {return;}
+if(this.state.password.length < 8){
+  this.setState({message:"Please Make Sure Your Password More Than 8 Letters"}); 
+  return;
 }
 
 this.setState({message:`Successfully Registered ${this.state.firstName}`})
@@ -59,10 +62,8 @@ setTimeout(()=>{
     this.setState({message:null})
     this.props.history.push('/');
 }, 3000)
-
-
 }
-
+}
   render() {
     console.log(this.state.idUser)
     return (

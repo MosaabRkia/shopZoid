@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import CircleButton from "./CircleButton";
 import '../cssFile/SucessfullyPageOrdered.css'
 function SucessfullyPageOrdered() {
@@ -14,13 +14,14 @@ function SucessfullyPageOrdered() {
       <br/><br/>
       <h1>Sucessfully Placed Order</h1>
       <br/><br/>
-      <CircleButton
-        word="My Orders"
-        toLink="/MyOrders"
-        fontColor="red"
-        backgroundColor="white"
-      />
+   <Link to="/MyOrders">My Orders</Link>
     </div>
   );
 }
 export default withRouter(SucessfullyPageOrdered);
+/**   <CircleButton
+        word="My Orders"
+        toLink="/MyOrders"
+        fontColor="red"
+        backgroundColor="white"
+      /> */
