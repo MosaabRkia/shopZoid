@@ -12,7 +12,7 @@ const AllArrayOfShopsCatalog =[
         imgSrc:"https://assets.hardwarezone.com/img/2018/08/rog-zephyrus-s_1.jpg"
 }, {
         typeOfCatalog:"Mouse",
-        imgSrc:"https://lh3.googleusercontent.com/proxy/yHZHOuQvShRxLx_THVEP1zBWu-KwsuTZBc2pmQsq81YFZ6Gsk8Z59GJ4zVgUo1EbWCQMok4dzEy7OnGWJvqSR6vhScapqEzPZkyNhxpMWRj8gMhFlzWxywk0BjlzqLcYoDVO"
+        imgSrc:"https://www.teahub.io/photos/full/339-3399804_best-gaming-mouse.jpg"
 }, {
         typeOfCatalog:"Headphones",
         imgSrc:"https://assets3.razerzone.com/itnUZtElzj8CDCTBKBDnccM32iw=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhf2%2Fh83%2F9058405810206%2Frazer-kraken-gallery-08.jpg"

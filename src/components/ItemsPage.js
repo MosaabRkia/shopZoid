@@ -7,14 +7,10 @@ export default function ItemsPage(props) {
 
 
   useEffect(() => {
-    console.log('hehe'  + props.typeOfCatalog)
     let temp = props.allItems.filter((item) => {
       return item.type === props.typeOfCatalog;
     });
-    console.log("im temp")
-    console.log(temp)
     setCatalogList(temp);
-    console.log("added here")
   }, []);
 
   function setItemToMain(e,path) {
@@ -35,15 +31,19 @@ export default function ItemsPage(props) {
     setCatalogList(temp);
   
     props.AddToCart(ToAddInCart,NewList);
-    
-    
+  }
+  function SortIt(){
+   catalogList.sort( (a, b)=> {
+      return a.price - b.price;
+    });
+    setCatalogList(catalogList)
   }
 
   return (
     <div>
-      <NavBar Page="MainPageAfterLogin" toLink="/MainPage" />
-
-      <ul>
+      <NavBar Page="ItemsPage" toLink="/MainPage" />
+<button onClick={SortIt}>Sort By Price</button>
+      <ul key="list">
         {catalogList.map((e) => {
           return (
             <EachListItem
@@ -58,4 +58,4 @@ export default function ItemsPage(props) {
     </div>
   );
 }
-// <SearchBar />
+

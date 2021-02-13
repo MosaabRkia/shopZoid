@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "../cssFile/NavBar.css";
 import NavBarList from "./NavBarList";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export default function NavBar(props) {
   const [ShowHide, setShowHide] = useState(false);
+//const [nameOfTheState,setNameOfTheState] = useState(firstValue);
+let history = useHistory();
 
   function OpenBar() {
     setShowHide(!ShowHide);
+  }
+  function gobackfunction(){
+    history.goBack();
   }
 
 switch (props.Page) {
@@ -18,15 +23,66 @@ switch (props.Page) {
     <Link to={props.toLink}><img alt="backArrow" id="backArrow" src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/arrow_left_circle-256.png"/></Link>
       <img id="Logo" alt="LOGOReg" src="https://i.ibb.co/CbBF9Hn/LOGO.png"/>
       <img id="ListShow" 
-      className={ShowHide ? "Show" : "Hide"} 
       onClick={OpenBar} 
       src="https://cdn2.iconfinder.com/data/icons/e-commerce-line-10-1/1024/menu10-128.png" />
-
     </div>
+
     <NavBarList showOrHide={ShowHide} Page="MyProfilePage" />
     </div>
   );
     break;
+
+    case "Admin":
+      return (
+        <div id="allNavBar">
+      <div className="navbar navbar-light ">
+        <img id="Logo" alt="LOGOReg" src="https://i.ibb.co/CbBF9Hn/LOGO.png"/>
+        <img id="ListShow" 
+        className={ShowHide ? "Show" : "Hide"} 
+        onClick={OpenBar} 
+        src="https://cdn2.iconfinder.com/data/icons/e-commerce-line-10-1/1024/menu10-128.png" />
+  
+      </div>
+      <NavBarList showOrHide={ShowHide} Page={props.Page} />
+      </div>
+    );
+      break;
+
+
+    case "ItemsPage":
+      return (
+        <div id="allNavBar">
+      <div className="navbar navbar-light ">
+     <img onClick={gobackfunction} alt="backArrow" id="backArrow" src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/arrow_left_circle-256.png"/>
+        <img id="Logo" alt="LOGOReg" src="https://i.ibb.co/CbBF9Hn/LOGO.png"/>
+        <img id="ListShow" 
+        className={ShowHide ? "Show" : "Hide"} 
+        onClick={OpenBar} 
+        src="https://cdn2.iconfinder.com/data/icons/e-commerce-line-10-1/1024/menu10-128.png" />
+  
+      </div>
+      <NavBarList showOrHide={ShowHide} Page="MyProfilePage" />
+      </div>
+    );
+      break;
+
+
+    case "ItemPage":
+      return (
+        <div id="allNavBar">
+      <div className="navbar navbar-light ">
+     <img onClick={gobackfunction} alt="backArrow" id="backArrow" src="https://cdn2.iconfinder.com/data/icons/arrows-and-universal-actions-icon-set/256/arrow_left_circle-256.png"/>
+        <img id="Logo" alt="LOGOReg" src="https://i.ibb.co/CbBF9Hn/LOGO.png"/>
+        <img id="ListShow" 
+        className={ShowHide ? "Show" : "Hide"} 
+        onClick={OpenBar} 
+        src="https://cdn2.iconfinder.com/data/icons/e-commerce-line-10-1/1024/menu10-128.png" />
+  
+      </div>
+      <NavBarList showOrHide={ShowHide} Page="MyProfilePage" />
+      </div>
+    );
+      break;
 
     case "MainPageAfterLogin":
       return (

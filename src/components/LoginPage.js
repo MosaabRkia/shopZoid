@@ -30,10 +30,16 @@ localStorage.setItem('saveLogin',true);
 }
 localStorage.setItem("User",JSON.stringify(e));
 console.log(saveLogin)
-props.history.push("/MainPage");
-            }
-        })
-        setMessege('Ops Something Wrong Try Again');
+
+if(e.kind === "Admin"){
+  props.history.push("/AdminPage");
+}
+else{
+  props.history.push("/MainPage");
+}
+ }
+ })
+setMessege('Ops Something Wrong Try Again');
     }
     
   function onChangeHandleEmail(e){

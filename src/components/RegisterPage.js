@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "../cssFile/RegisterPage.css";
+
 class RegisterPage extends Component {
   constructor(props) {
     super(props);
@@ -24,9 +25,9 @@ class RegisterPage extends Component {
   };
 
 onClickRegister=(e)=>{
-   // let history = useHistory();
-   let found = false;
     e.preventDefault();
+
+    let found = false;
 
 if(this.state.password !== this.state.conPassword)
 {
@@ -38,18 +39,19 @@ if(this.props.Users !== undefined )
 
   this.props.Users.map(e=>{
     if(e.email == this.state.email){
-        console.log("found same")
         this.setState({message:"Email Already Registered!"})
         found = true;
         return;
     }
 })  
-if(found ===true) return;
+if(found ===true) {return;}
+if(this.state.password.length < 8){
+  this.setState({message:"Please Make Sure Your Password More Than 8 Letters"}); 
+  return;
 }
 
 this.setState({message:`Successfully Registered ${this.state.firstName}`})
-console.log(this.state.idUser);
-let User = {/*User:this.state.idUser,*/firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password,conPassword:this.state.conPassword}
+let User = {/*User:this.state.idUser,*/firstName:this.state.firstName,lastName:this.state.lastName,email:this.state.email,password:this.state.password,conPassword:this.state.conPassword,kind:"member"}
 this.props.registerNewUser(User);
 //let nextId = this.state.idUser+1;
 //this.setState({idUser:nextId})
@@ -59,12 +61,9 @@ setTimeout(()=>{
     this.setState({message:null})
     this.props.history.push('/');
 }, 3000)
-
-
 }
-
+}
   render() {
-    console.log(this.state.idUser)
     return (
       <form onSubmit={this.onClickRegister} className="container RegisterPage">
         <div id="titlesRegisterP">

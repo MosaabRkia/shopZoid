@@ -6,8 +6,7 @@ import NavBar from "./NavBar";
 import "../cssFile/MainPageAfterLogin.css";
 import { Animated } from "react-animated-css";
 import AllArrayOfShopsCatalog from "./Arrays/ItemsPagesArr";
-import { Route } from "react-router-dom";
-import ItemsPage from "./ItemsPage";
+
 
 export default class MainPageAfterLogin extends Component {
   constructor(props) {

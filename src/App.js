@@ -1,5 +1,5 @@
-import React, { useState, Component } from "react";
-import { Route, Switch ,Link} from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import MainPageAfterLogin from "./components/MainPageAfterLogin";
 import RegisterPage from "./components/RegisterPage";
@@ -17,31 +17,93 @@ import AllArrayOfShopsCatalog from './components/Arrays/ItemsPagesArr'
 import '../src/cssFile/body.css'
 import PaymentPage from "./components/PaymentPage";
 import SucessfullyPageOrdered from "./components/SucessfullyPageOrdered";
+import PageSucessfullySentContact from "./components/PageSucessfullySentContact";
+import AdminPage from "./components/AdminPage";
 
 export default function App() {
   const [itemInUse, setItemInUse] = useState(null);
-  const [Users , setUsers] = useState([]);
+  const [Users , setUsers] = useState([{/*User:this.state.idUser,*/firstName:'Admin',lastName:'Admin',email:'Admin@Admin.Admin',password:'Admin',conPassword:'Admin',kind:"Admin"}]);
   const [allItems , setAllItems] = useState(ItemShopArr);
   const [cartArray,setCartArray] = useState([]);
   const [pathBack , setPathBack] = useState([]);
   const [ArrOrders , setArrOrders] = useState([]);
   const [LastOrder , setLastOrder] = useState();
   const [counterForOrder , setCounterForOrder] = useState();
+  const [wishListArray , setWishListArray] = useState([]);
+
+
+function CreateNewItem(e){
+  let temp = allItems;
+  temp.push(e)
+  setAllItems(temp);
+}
+
+function ChangePrice(itemID,newPrice){
+    let temp=[];//mshtni
+      allItems.map(item=>{//bmshi bkl al items bl aslyi
+          if(item.id  === itemID){//atha la id nfs al id ali 8erna s3ro 8er s3ro wkml 3ade
+              item.price=newPrice;// update ll price
+      }
+  temp.push(item);// bdefo daymn lw 8er al m7er wela l3
+  })
+ setAllItems(temp); // set state mshan y3dken twali
+}
+
+function RemoveItem(idToRemove){
+  let temp = []//mshtni
+ allItems.map(item=>{//map 3la al all items 
+  if( item.id  !== idToRemove){// atha had al id msh nfs al id ali bdna nm7a az defo bl temp
+    temp.push(item)
+  }
+})
+setAllItems(temp);//set state ll all items 
+}
+
+function ChangeInfoUser(e){
+setUsers(e);
+}
+
+  function RemoveFromWishList(e){
+    let newList = wishListArray.filter((item)=>{ return item.id !== e})
+    setWishListArray(newList);
+  }
+
+function AddToCartWishList(e){
+  //remove from big array
+  let theNewList = allItems.filter((item)=>{ return item.id !== e})
+  setAllItems(theNewList)
+
+  // add to cart
+let TheItem = wishListArray.filter((item)=>{ return item.id === e})
+
+let temp = cartArray;
+temp.push(TheItem[0])
+setCartArray(temp)
+// remove from wishlist
+  let theNewListWish = wishListArray.filter((item)=>{ return item.id !== e})
+setWishListArray(theNewListWish)
+
+}
 
 function AddOrderPlaced(e){
   setLastOrder(e);
-  let newUniq = 'A' + Math.random().toString(36).substr(2, 9);
   let temp = ArrOrders;
-  temp.push(e);
+  temp.push({Order:e});
   setArrOrders(temp);
-  console.log(ArrOrders)
+  setCounterForOrder(counterForOrder+1);
 }
 
   function registerNewUser(e) {
     let temp = Users;
-    Users.push(e);
+    temp.push(e);
     setUsers(temp);
-    console.log(temp)
+  }
+
+  function AddToWishList(e){
+      let theItem = allItems.filter((item)=>{ return item.id === e})
+      let temp = wishListArray;
+      temp.push(theItem[0])
+      setWishListArray(temp)
   }
 
   function AddToCart(AddToCart,NewList){
@@ -65,7 +127,6 @@ else{
 }
 }
  function ChangeQuantity(id,quantity){
-   console.log(id + " " + quantity)
 cartArray.map(e=>{
   if(e.id == id){
     let number = parseInt(quantity)
@@ -81,7 +142,6 @@ setCartArray(temp);
  await setCartArray(newArrCart);
  let temp = allItems;
  temp.push(removeItem[0]);
- console.log(temp);
  await setAllItems(temp);
 }
 
@@ -103,6 +163,9 @@ setCartArray(temp);
   return (
     <div>
       <Switch>
+        <Route exact path="/AdminPage">
+          <AdminPage ChangePrice={ChangePrice} CreateNewItem={CreateNewItem}  RemoveItem={RemoveItem} allItems={allItems}/>
+        </Route>
       <Route exact path="/SucessfullyPageOrdered">
           <SucessfullyPageOrdered />
         </Route>
@@ -152,9 +215,6 @@ setCartArray(temp);
           >
             <MainPageAfterLogin />
 
-
-      
-
           </Animated>
         </Route>
 
@@ -162,15 +222,16 @@ setCartArray(temp);
           <MyProfilePage
             imgSrc="https://i.pinimg.com/564x/04/bb/21/04bb2164bbfa3684118a442c17d086bf.jpg"
             name="mosaab abo rkia"
+            Users={Users}
           />
         </Route>
 
         <Route exact path="/MyOrders">
-          <MyOrders  ArrMyOrder={ArrOrders}/>
+          <MyOrders  ArrOrders={ArrOrders}/>
         </Route>
 
         <Route exact path="/WishList">
-          <WishList />
+          <WishList RemoveFromWishList={RemoveFromWishList} AddToCartWishList={AddToCartWishList} wishListArray={wishListArray}/>
         </Route>
 
         <Route exact path="/EditProfile">
@@ -182,11 +243,19 @@ setCartArray(temp);
         </Route>         
 
         <Route exact path="/ItemPage">
-          <ItemPage itemInUse={itemInUse} pathBack={pathBack}  AddToCart={AddToCart}/>
+          <ItemPage wishListArray={wishListArray} AddToWishList={AddToWishList} itemInUse={itemInUse} pathBack={pathBack}  AddToCart={AddToCart}/>
         </Route>
 
-        <Route exact path="/ContactUs">
-          <ContactUs />
+        <Route exact path="/ContactUs" >
+          <ContactUs  />
+        </Route>
+
+<Route exact path="/EditProfile">
+  <EditProfile Users={Users} ChangeInfoUser={ChangeInfoUser}/>
+</Route>
+
+        <Route exact path="/PageSucessfullySentContact">
+          <PageSucessfullySentContact />
         </Route>
       </Switch>
     </div>

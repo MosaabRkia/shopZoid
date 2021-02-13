@@ -5,9 +5,7 @@ import CircleButton from './CircleButton'
 
 
 export default function MyProfilePage(props) {
-  const [userLogined,setUserLogined] = useState(localStorage.getItem('User'));
-  let usr = JSON.parse(userLogined)
-  console.log(JSON.parse(userLogined))
+  let usr = JSON.parse(localStorage.getItem('User'))
     return (<div>
         <NavBar Page="MyProfilePage" toLink="/MainPage"/>
         <div className="card">
@@ -36,6 +34,7 @@ toLink="/EditProfile"
 fontColor="red"
 backgroundColor="black"
 />
+
   </div>
 </div>
 <div className="card">

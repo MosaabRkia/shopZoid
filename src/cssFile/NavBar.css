@@ -9,22 +9,6 @@
     height:50px;
     margin: 5px;
 }
-.Show{
-    animation-name: show;
-    animation-duration: 20s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
-}
-.Hide{
-    transform:rotate(0deg);
-    animation-name: hide;
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
-}
 #Logo {
     width: 167px;
     height: 70px;

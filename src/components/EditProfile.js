@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import '../cssFile/EditProfile.css';
 
@@ -13,6 +13,7 @@ export default function EditProfile(props) {
   const [message, setMessage] = useState();
   const [userLogined,setUserLogined] = useState(localStorage.getItem('User'));
   let usr = JSON.parse(userLogined)
+
 
 // note the state when changed to regular make problems
   function showDivChangeEmail() {
@@ -44,6 +45,12 @@ if(usr.email === oldEmail){
   usr.email = newEmail;
   localStorage.setItem('User',usr)
   setMessage("sucessfully Changed Email")
+  let NewUsers = props.Users.map(e=>{
+    if(e.email === oldEmail){
+      e.email = newEmail;
+    }
+  })
+  props.ChangeInfoUser(NewUsers)
 }
 else{
   setMessage("Wrong Old Email or Vaild new Email")
@@ -52,15 +59,28 @@ else{
 
   function ChangePassword(e){
     e.preventDefault();
-
+    console.log(props.Users)
     if(usr.password === oldPassword){
       usr.password = newPassword;
       localStorage.setItem('User',usr)
       setMessage("sucessfully Changed Password")
+     let NewUsers = props.Users.map(e=>{
+      if( e.password === oldPassword){
+        console.log("joined")
+          e.password = newPassword;
+          e.conPassword = newPassword;
+      }
+
+      })
+      props.ChangeInfoUser(NewUsers)
     }else{
       setMessage("Wrong Old Password or Vaild new Password")
     }
   }
+  useEffect(()=>{
+    console.log(props.Users)
+  })
+
 
   return (
     <div className="container" style={{textAlign:'center'}}>

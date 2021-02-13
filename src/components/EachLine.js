@@ -3,6 +3,12 @@ import "../cssFile/EachLine.css";
 export default function EachLine(props) {
 
   const [quantityLess,setQunatityLess] = useState();
+function AddToCartWishList(){
+  props.AddToCartWishList(props.e.id)
+}
+function RemoveFromWishList(){
+  props.RemoveFromWishList(props.e.id)
+}
   function RemoveBar(e){
 props.RemoveOne(e.target.id);
   }
@@ -43,7 +49,8 @@ props.RemoveOne(e.target.id);
         <p id="orderIdText">Id : {props.e.id}</p>
         <p>quantity : {props.e.quantity}</p>
         <p id="orderPriceText">Total Price : {props.e.price}$</p>
-        <button onClick="#AddToCart">Add To Cart</button>
+        <button onClick={AddToCartWishList}>Add To Cart</button>
+        <button onClick={RemoveFromWishList}>Remove</button>
       </div>
     </li>
   );

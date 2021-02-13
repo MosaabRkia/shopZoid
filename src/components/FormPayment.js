@@ -1,19 +1,17 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import '../cssFile/FormPayment.css'
 import PaymentPage from './PaymentPage'
 
 function FormPayment(props) {
 
-    function DoneOrder(){
-        props.history.push('/SucessfullyPageOrdered')
-    }
+
     return (
         <div>     
 <div class="row">
   <div class="col-75">
     <div class="container1">
-      <form onSubmit={DoneOrder}>
+      <form >
       
         <div class="row">
           <div class="col-50">
@@ -67,7 +65,7 @@ function FormPayment(props) {
           </div>
           
         </div>
-        <input type="submit" value="Continue to checkout" class="btn"/>
+       <Link to="/SucessfullyPageOrdered"> <input type="submit" value="Continue to checkout" class="btn"/></Link>
       </form>
     </div>
   </div>
