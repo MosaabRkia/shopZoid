@@ -18,7 +18,10 @@ import '../src/cssFile/body.css'
 import PaymentPage from "./components/PaymentPage";
 import SucessfullyPageOrdered from "./components/SucessfullyPageOrdered";
 import PageSucessfullySentContact from "./components/PageSucessfullySentContact";
+<<<<<<< HEAD
 import AdminPage from "./components/AdminPage";
+=======
+>>>>>>> main
 
 export default function App() {
   const [itemInUse, setItemInUse] = useState(null);
@@ -31,6 +34,7 @@ export default function App() {
   const [counterForOrder , setCounterForOrder] = useState();
   const [wishListArray , setWishListArray] = useState([]);
 
+<<<<<<< HEAD
 
 function CreateNewItem(e){
   let temp = allItems;
@@ -63,6 +67,8 @@ function ChangeInfoUser(e){
 setUsers(e);
 }
 
+=======
+>>>>>>> main
   function RemoveFromWishList(e){
     let newList = wishListArray.filter((item)=>{ return item.id !== e})
     setWishListArray(newList);
@@ -79,6 +85,11 @@ let TheItem = wishListArray.filter((item)=>{ return item.id === e})
 let temp = cartArray;
 temp.push(TheItem[0])
 setCartArray(temp)
+<<<<<<< HEAD
+=======
+console.log(cartArray)
+
+>>>>>>> main
 // remove from wishlist
   let theNewListWish = wishListArray.filter((item)=>{ return item.id !== e})
 setWishListArray(theNewListWish)
@@ -91,6 +102,10 @@ function AddOrderPlaced(e){
   temp.push({Order:e});
   setArrOrders(temp);
   setCounterForOrder(counterForOrder+1);
+<<<<<<< HEAD
+=======
+  console.log(ArrOrders)
+>>>>>>> main
 }
 
   function registerNewUser(e) {
@@ -99,6 +114,12 @@ function AddOrderPlaced(e){
     setUsers(temp);
   }
 
+  function AddToWishList(e){
+      let theItem = allItems.filter((item)=>{ return item.id === e})
+      let temp = wishListArray;
+      temp.push(theItem[0])
+      setWishListArray(temp)
+  }
   function AddToWishList(e){
       let theItem = allItems.filter((item)=>{ return item.id === e})
       let temp = wishListArray;
@@ -244,6 +265,7 @@ setCartArray(temp);
 
         <Route exact path="/ItemPage">
           <ItemPage wishListArray={wishListArray} AddToWishList={AddToWishList} itemInUse={itemInUse} pathBack={pathBack}  AddToCart={AddToCart}/>
+<<<<<<< HEAD
         </Route>
 
         <Route exact path="/ContactUs" >
@@ -254,6 +276,14 @@ setCartArray(temp);
   <EditProfile Users={Users} ChangeInfoUser={ChangeInfoUser}/>
 </Route>
 
+=======
+        </Route>
+
+        <Route exact path="/ContactUs" >
+          <ContactUs  />
+        </Route>
+
+>>>>>>> main
         <Route exact path="/PageSucessfullySentContact">
           <PageSucessfullySentContact />
         </Route>

@@ -5,13 +5,21 @@ import { Link, useHistory } from 'react-router-dom'
 
 export default function NavBar(props) {
   const [ShowHide, setShowHide] = useState(false);
+<<<<<<< HEAD
 //const [nameOfTheState,setNameOfTheState] = useState(firstValue);
 let history = useHistory();
 
+=======
+let history = useHistory();
+>>>>>>> main
   function OpenBar() {
     setShowHide(!ShowHide);
   }
   function gobackfunction(){
+<<<<<<< HEAD
+=======
+    console.log("ops")
+>>>>>>> main
     history.goBack();
   }
 
@@ -32,6 +40,7 @@ switch (props.Page) {
   );
     break;
 
+<<<<<<< HEAD
     case "Admin":
       return (
         <div id="allNavBar">
@@ -49,6 +58,8 @@ switch (props.Page) {
       break;
 
 
+=======
+>>>>>>> main
     case "ItemsPage":
       return (
         <div id="allNavBar">

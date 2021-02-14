@@ -1,5 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+<<<<<<< HEAD
+=======
+import EachLine from './EachLine'
+>>>>>>> main
 import NavBar from './NavBar'
 import ShowListMyOrders from './ShowListMyOrders'
 
@@ -19,3 +23,11 @@ import ShowListMyOrders from './ShowListMyOrders'
     )
 }
 export default withRouter(MyOrders)
+<<<<<<< HEAD
+=======
+/*
+return  <li><h1>Order {index+1} :</h1> {e.map(e=>{
+    <EachLine type="PaymentPage" e={e[index]} />
+}) }</li>
+ */
+>>>>>>> main

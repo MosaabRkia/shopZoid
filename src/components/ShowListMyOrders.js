@@ -7,8 +7,13 @@ function ShowListMyOrders(props) {
     let newUniq = 'A' + Math.random().toString(36).substr(2, 9);
     return (
         <ul>
+<<<<<<< HEAD
         <h1>Order {props.index+1}</h1>
         <h4>Order Id : {newUniq}</h4>
+=======
+                            <h1>Order {props.index+1}</h1>
+                            <h4>Order Id : {newUniq}</h4>
+>>>>>>> main
             {props.e.Order.map( (r) =>{
 
     return (<li key={r.orderId} style={{display:"flex",margin:"5px"}} className="list-group-item">

@@ -5,13 +5,23 @@ import PaymentPage from './PaymentPage'
 
 function FormPayment(props) {
 
+<<<<<<< HEAD
 
+=======
+    /*function DoneOrder(){
+        props.history.push('/SucessfullyPageOrdered')
+    }*/
+>>>>>>> main
     return (
         <div>     
 <div class="row">
   <div class="col-75">
     <div class="container1">
+<<<<<<< HEAD
       <form >
+=======
+      <form /*onSubmit={DoneOrder}*/>
+>>>>>>> main
       
         <div class="row">
           <div class="col-50">

@@ -37,13 +37,21 @@ export default function ItemsPage(props) {
       return a.price - b.price;
     });
     setCatalogList(catalogList)
+<<<<<<< HEAD
+=======
+    console.log(catalogList)
+>>>>>>> main
   }
 
   return (
     <div>
       <NavBar Page="ItemsPage" toLink="/MainPage" />
 <button onClick={SortIt}>Sort By Price</button>
+<<<<<<< HEAD
       <ul key="list">
+=======
+      <ul>
+>>>>>>> main
         {catalogList.map((e) => {
           return (
             <EachListItem
